@@ -1,9 +1,9 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight, ShieldCheck, Truck, Star, Award, Users, TrendingUp, MessageCircle, Play } from 'lucide-react'
+import { ArrowRight, ShieldCheck, Truck, Star, Award, Users, MessageCircle, Play } from 'lucide-react'
 import ProductCard from '../components/ProductCard'
-import { products, brands, categories, testimonials } from '../data'
+import { products, brands, categories } from '../data'
 
 // Premium easing curve for animations
 const springEase = [0.16, 1, 0.3, 1]
