@@ -1,20 +1,23 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight, ShieldCheck, Truck, Star, Award, Users, TrendingUp, MessageCircle } from 'lucide-react'
+import { ArrowRight, ShieldCheck, Truck, Star, Award, Users, TrendingUp, MessageCircle, Play } from 'lucide-react'
 import ProductCard from '../components/ProductCard'
 import { products, brands, categories, testimonials } from '../data'
 
+// Premium easing curve for animations
+const springEase = [0.16, 1, 0.3, 1]
+
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true })
+  const inView = useInView(ref, { once: true, margin: "-50px" })
   return (
     <span ref={ref}>
       {inView ? (
         <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: springEase }}
         >
           {target}{suffix}
         </motion.span>
@@ -25,171 +28,173 @@ function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
 
 export default function Home() {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-[#080808]">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1547491689-1f5c4f5671f1?w=1600&h=900&fit=crop"
-            alt="Athlete"
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#080808] via-[#080808]/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent" />
-        </div>
-
-        {/* Grid texture */}
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: 'linear-gradient(rgba(170,255,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(170,255,0,0.5) 1px, transparent 1px)',
-          backgroundSize: '60px 60px'
-        }} />
-
-        {/* Green accent line */}
-        <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#AAFF00]" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-          <div className="max-w-3xl">
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      exit={{ opacity: 0 }} 
+      className="bg-white text-zinc-900 selection:bg-[#E63946] selection:text-white"
+    >
+      {/* HERO SECTION - Editorial, clean, human-crafted layout */}
+      <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-24 overflow-hidden max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <div className="lg:col-span-7 relative z-10 pt-10 lg:pt-0">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex items-center gap-3 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: springEase }}
+              className="flex items-center gap-4 mb-8"
             >
-              <span className="h-0.5 w-10 bg-[#AAFF00]" />
-              <span className="text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-[4px]">Malang's #1 Sports Store</span>
+              <span className="h-0.5 w-12 bg-[#E63946]" />
+              <span className="font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-widest text-zinc-500">
+                Est. 1974 • Malang City
+              </span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-['Barlow_Condensed'] font-black text-6xl sm:text-7xl lg:text-8xl xl:text-9xl uppercase leading-[0.9] text-white mb-6"
+              transition={{ duration: 0.8, delay: 0.1, ease: springEase }}
+              className="font-['Barlow_Condensed'] font-black text-6xl sm:text-7xl lg:text-[7rem] uppercase leading-[0.85] tracking-tight text-zinc-900 mb-8"
             >
-              Trusted<br />
-              <span className="text-[#AAFF00]">Sports</span><br />
-              Store
+              Elevate <br />
+              <span className="text-[#E63946] relative inline-block">
+                Your Game
+                {/* Subtle dynamic underline */}
+                <motion.span 
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 1, delay: 0.8, ease: springEase }}
+                  className="absolute -bottom-2 left-0 right-0 h-2 bg-[#E63946] origin-left"
+                />
+              </span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-zinc-400 text-lg max-w-xl mb-10 font-['Barlow'] leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-zinc-500 text-lg sm:text-xl max-w-lg mb-10 leading-relaxed"
             >
-              Serving Malang's sporting community since 1974. Original products, best prices, and genuine passion for sports.
+              Equipping Malang's sporting community with premium, authentic gear for over 50 years. True passion, zero compromises.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-wrap gap-4"
+              transition={{ duration: 0.8, delay: 0.4, ease: springEase }}
+              className="flex flex-wrap items-center gap-6"
             >
               <Link to="/products"
-                className="px-8 py-4 bg-[#AAFF00] text-black font-['Barlow_Condensed'] font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-white transition-all duration-200 flex items-center gap-2 hover:gap-3">
-                Shop Now <ArrowRight size={16} />
+                className="group px-8 py-4 bg-zinc-900 text-white font-['Barlow_Condensed'] font-bold text-base uppercase tracking-widest rounded-full hover:bg-[#E63946] transition-all duration-300 flex items-center gap-3">
+                Shop Collection 
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link to="/brands"
-                className="px-8 py-4 bg-transparent border border-zinc-600 text-white font-['Barlow_Condensed'] font-bold text-sm uppercase tracking-widest rounded-xl hover:border-[#AAFF00] hover:text-[#AAFF00] transition-all duration-200">
-                Explore Brands
-              </Link>
-            </motion.div>
-
-            {/* Quick stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              className="flex gap-8 mt-16 pt-8 border-t border-zinc-800"
-            >
-              {[
-                { value: 50, suffix: '+', label: 'Years Trusted' },
-                { value: 500, suffix: '+', label: 'Products' },
-                { value: 10, suffix: 'K+', label: 'Happy Customers' },
-              ].map(({ value, suffix, label }) => (
-                <div key={label}>
-                  <p className="font-['Barlow_Condensed'] font-black text-3xl text-white">
-                    <Counter target={value} suffix={suffix} />
-                  </p>
-                  <p className="text-zinc-500 text-xs font-['Barlow'] uppercase tracking-wider">{label}</p>
+              <Link to="/about"
+                className="group flex items-center gap-3 text-zinc-900 font-bold uppercase tracking-wider text-sm hover:text-[#E63946] transition-colors">
+                <div className="w-12 h-12 rounded-full border border-zinc-300 flex items-center justify-center group-hover:border-[#E63946] transition-colors">
+                  <Play size={16} className="ml-1" />
                 </div>
-              ))}
+                Our Story
+              </Link>
             </motion.div>
           </div>
-        </div>
 
-        {/* Floating badge */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="absolute bottom-12 right-8 lg:right-16 hidden md:flex flex-col items-center gap-2 p-4 bg-[#111]/80 backdrop-blur rounded-2xl border border-zinc-800"
-        >
-          <div className="w-12 h-12 rounded-xl bg-[#AAFF00]/10 flex items-center justify-center">
-            <ShieldCheck size={24} className="text-[#AAFF00]" />
+          {/* Hero Imagery - Asymmetrical, overlapping */}
+          <div className="lg:col-span-5 relative mt-12 lg:mt-0">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, x: 20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.2, ease: springEase }}
+              className="relative aspect-[3/4] md:aspect-[4/5] overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&h=1000&fit=crop"
+                alt="Runner tying shoe"
+                className="w-full h-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-black/10" />
+            </motion.div>
+            
+            {/* Human-crafted overlapping element */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: springEase }}
+              className="absolute -bottom-8 -left-8 md:-left-16 bg-white p-6 shadow-2xl border border-zinc-100 max-w-[240px]"
+            >
+              <div className="flex gap-1 mb-2 text-[#E63946]">
+                {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+              </div>
+              <p className="font-['Barlow_Condensed'] font-bold text-xl uppercase leading-tight mb-2">"The only store I trust for my tournament gear."</p>
+              <p className="text-sm text-zinc-500 font-medium">— Dimas, Pro Athlete</p>
+            </motion.div>
           </div>
-          <p className="text-white font-['Barlow_Condensed'] font-bold text-sm text-center">100%<br/>Original</p>
-        </motion.div>
+
+        </div>
       </section>
 
-      {/* TRUST BAR */}
-      <section className="bg-[#111111] border-y border-zinc-900 py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {/* TRUST BAR - Minimalist and Premium */}
+      <section className="border-y border-zinc-200 bg-zinc-50 py-8">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 divide-x divide-zinc-200">
             {[
-              { icon: <ShieldCheck size={20} />, title: '100% Original', desc: 'Guaranteed authentic products' },
-              { icon: <Truck size={20} />, title: 'Fast Delivery', desc: 'Same-day Malang area' },
-              { icon: <Award size={20} />, title: 'Best Price', desc: 'Price match guarantee' },
-              { icon: <Users size={20} />, title: 'Community', desc: 'Trusted since 1974' },
-            ].map(({ icon, title, desc }) => (
-              <div key={title} className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#AAFF00]/10 rounded-lg flex items-center justify-center text-[#AAFF00] shrink-0">
-                  {icon}
-                </div>
-                <div>
-                  <p className="text-white font-['Barlow_Condensed'] font-bold text-sm uppercase">{title}</p>
-                  <p className="text-zinc-500 text-xs font-['Barlow']">{desc}</p>
-                </div>
+              { icon: <ShieldCheck size={24} />, title: '100% Authentic', desc: 'Verified original gear' },
+              { icon: <Truck size={24} />, title: 'Express Local', desc: 'Same-day Malang delivery' },
+              { icon: <Award size={24} />, title: 'Price Match', desc: 'Best value guaranteed' },
+              { icon: <Users size={24} />, title: 'Expert Advice', desc: 'Staffed by real athletes' },
+            ].map(({ icon, title, desc }, i) => (
+              <div key={title} className={`flex flex-col items-center text-center ${i !== 0 ? 'pl-8 lg:pl-12' : ''}`}>
+                <div className="text-[#E63946] mb-3">{icon}</div>
+                <h3 className="text-zinc-900 font-['Barlow_Condensed'] font-bold text-lg uppercase tracking-wide">{title}</h3>
+                <p className="text-zinc-500 text-sm mt-1">{desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CATEGORIES */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between mb-10">
-          <div>
-            <p className="text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-[4px] mb-2">Browse by Sport</p>
-            <h2 className="text-4xl lg:text-5xl text-white font-['Barlow_Condensed'] font-black uppercase">Categories</h2>
+      {/* CATEGORIES - Magazine style dynamic grid */}
+      <section className="py-24 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl lg:text-5xl text-zinc-900 font-['Barlow_Condensed'] font-black uppercase tracking-tight mb-4">Shop by Discipline</h2>
+            <p className="text-zinc-500 text-lg">Curated equipment for every court, pitch, and track.</p>
           </div>
-          <Link to="/products" className="hidden md:flex items-center gap-2 text-zinc-400 hover:text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-wider transition-colors">
-            View All <ArrowRight size={14} />
+          <Link to="/products" className="group flex items-center gap-2 text-zinc-900 font-bold uppercase tracking-wider text-sm hover:text-[#E63946] transition-colors pb-2">
+            Explore All Categories <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {categories.map((cat, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.slice(0, 3).map((cat, i) => (
             <motion.div
               key={cat.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.06 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.1, duration: 0.6, ease: springEase }}
             >
-              <Link
-                to={`/products?category=${cat.name}`}
-                className="relative block rounded-2xl overflow-hidden aspect-[3/4] group"
-              >
-                <img src={cat.image} alt={cat.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                <div className="absolute inset-0 bg-[#AAFF00]/0 group-hover:bg-[#AAFF00]/10 transition-all duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <p className="text-2xl mb-1">{cat.icon}</p>
-                  <p className="text-white font-['Barlow_Condensed'] font-bold text-base uppercase">{cat.name}</p>
-                  <p className="text-zinc-400 text-xs font-['Barlow']">{cat.count} items</p>
+              <Link to={`/products?category=${cat.name}`} className="group block relative aspect-[4/5] overflow-hidden bg-zinc-100">
+                <img 
+                  src={cat.image} 
+                  alt={cat.name} 
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                
+                <div className="absolute bottom-0 left-0 p-8 w-full flex items-end justify-between">
+                  <div>
+                    <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white text-xs font-bold tracking-widest uppercase mb-3">
+                      {cat.count} Items
+                    </span>
+                    <h3 className="text-white font-['Barlow_Condensed'] font-black text-3xl uppercase tracking-wide">
+                      {cat.name}
+                    </h3>
+                  </div>
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-zinc-900 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <ArrowRight size={20} />
+                  </div>
                 </div>
               </Link>
             </motion.div>
@@ -197,255 +202,169 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURED PRODUCTS */}
-      <section className="py-20 bg-[#0d0d0d]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <p className="text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-[4px] mb-2">Handpicked for You</p>
-              <h2 className="text-4xl lg:text-5xl text-white font-['Barlow_Condensed'] font-black uppercase">Featured Products</h2>
-            </div>
-            <Link to="/products" className="hidden md:flex items-center gap-2 text-zinc-400 hover:text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-wider transition-colors">
-              See All <ArrowRight size={14} />
-            </Link>
+      {/* FEATURED PRODUCTS - Clean, spacious layout */}
+      <section className="py-24 bg-zinc-50 border-y border-zinc-200">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl text-zinc-900 font-['Barlow_Condensed'] font-black uppercase tracking-tight mb-4">Latest Arrivals</h2>
+            <p className="text-zinc-500 text-lg">Premium gear just landed in-store.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
             {products.slice(0, 4).map((product, i) => (
               <ProductCard key={product.id} product={product} index={i} />
             ))}
           </div>
+
+          <div className="mt-16 text-center">
+            <Link to="/products" className="inline-flex px-8 py-4 bg-white border-2 border-zinc-900 text-zinc-900 font-['Barlow_Condensed'] font-bold text-base uppercase tracking-widest rounded-full hover:bg-zinc-900 hover:text-white transition-all duration-300">
+              View Entire Collection
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* PROMO BANNER */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* PROMO BANNER - Impactful, color-blocked */}
+      <section className="py-24 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative rounded-3xl overflow-hidden bg-[#AAFF00] p-10 lg:p-16"
+          transition={{ duration: 0.8, ease: springEase }}
+          className="relative bg-[#E63946] overflow-hidden flex flex-col lg:flex-row items-center"
         >
-          <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:block">
-            <img
-              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop"
-              alt="Promo"
-              className="w-full h-full object-cover mix-blend-multiply opacity-70"
-            />
-          </div>
-          <div className="relative z-10 max-w-lg">
-            <p className="font-['Barlow_Condensed'] font-bold text-black/60 text-sm uppercase tracking-[4px] mb-3">Limited Time</p>
-            <h2 className="font-['Barlow_Condensed'] font-black text-5xl lg:text-6xl uppercase text-black leading-tight mb-4">
-              Year-End<br />Mega Sale
+          <div className="lg:w-1/2 p-12 lg:p-20 relative z-10">
+            <span className="inline-block py-1 px-3 bg-white text-[#E63946] font-bold text-xs uppercase tracking-widest mb-6">
+              Season Finale
+            </span>
+            <h2 className="font-['Barlow_Condensed'] font-black text-5xl lg:text-7xl uppercase text-white leading-[0.9] tracking-tight mb-6">
+              Performance <br/> Meets Value
             </h2>
-            <p className="text-black/70 font-['Barlow'] mb-8 text-lg">Up to 30% off on selected badminton and futsal equipment. Original products, best prices.</p>
-            <Link to="/products"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-black text-[#AAFF00] font-['Barlow_Condensed'] font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-zinc-900 transition-colors">
-              Shop Sale <ArrowRight size={16} />
+            <p className="text-white/90 text-lg max-w-md mb-8">
+              Up to 30% off professional-grade racquets and footwear. Equip yourself for the next tournament without compromise.
+            </p>
+            <Link to="/products?sale=true"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-zinc-900 text-white font-['Barlow_Condensed'] font-bold text-base uppercase tracking-widest rounded-full hover:bg-white hover:text-zinc-900 transition-colors">
+              Access Sale <ArrowRight size={18} />
             </Link>
+          </div>
+          
+          <div className="lg:w-1/2 h-full min-h-[400px] lg:absolute right-0 top-0 bottom-0">
+            <img
+              src="https://images.unsplash.com/photo-1622599511051-16f55a1234d0?w=1000&h=800&fit=crop"
+              alt="Tennis racket"
+              className="w-full h-full object-cover mix-blend-multiply opacity-80"
+            />
           </div>
         </motion.div>
       </section>
 
-      {/* TOP BRANDS */}
-      <section className="py-20 bg-[#0d0d0d]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-[4px] mb-2">Official Reseller</p>
-            <h2 className="text-4xl lg:text-5xl text-white font-['Barlow_Condensed'] font-black uppercase">Top Brands</h2>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
-            {brands.map((brand, i) => (
-              <motion.div
-                key={brand.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-              >
-                <Link to="/brands" className="group flex flex-col items-center gap-2 p-4 bg-zinc-900/50 hover:bg-[#AAFF00]/10 border border-zinc-800 hover:border-[#AAFF00]/40 rounded-xl transition-all duration-200">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center font-['Oswald'] font-bold text-lg text-white group-hover:text-[#AAFF00]"
-                    style={{ backgroundColor: brand.color + '22', color: brand.color }}>
-                    {brand.logo}
-                  </div>
-                  <span className="text-zinc-400 group-hover:text-white font-['Barlow_Condensed'] font-semibold text-xs uppercase tracking-wider transition-colors">{brand.name}</span>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-          <div className="text-center mt-8">
-            <Link to="/brands" className="inline-flex items-center gap-2 text-zinc-400 hover:text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-wider transition-colors">
-              View All Brands <ArrowRight size={14} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* BEST SELLERS */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between mb-10">
-          <div>
-            <p className="text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-[4px] mb-2">Most Popular</p>
-            <h2 className="text-4xl lg:text-5xl text-white font-['Barlow_Condensed'] font-black uppercase">Best Sellers</h2>
-          </div>
-          <Link to="/products" className="hidden md:flex items-center gap-2 text-zinc-400 hover:text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-wider transition-colors">
-            See All <ArrowRight size={14} />
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {products.slice(4, 8).map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
-          ))}
-        </div>
-      </section>
-
-      {/* COMMUNITY SECTION */}
-      <section className="py-20 bg-[#0d0d0d]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* COMMUNITY SECTION - Editorial storytelling */}
+      <section className="py-24">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: springEase }}
+              className="order-2 lg:order-1"
             >
-              <p className="text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-[4px] mb-3">More Than a Store</p>
-              <h2 className="font-['Barlow_Condensed'] font-black text-5xl lg:text-6xl uppercase text-white leading-tight mb-6">
-                Heart of<br/>Malang's<br/>Sports Scene
+              <h2 className="font-['Barlow_Condensed'] font-black text-5xl lg:text-6xl uppercase text-zinc-900 leading-tight tracking-tight mb-6">
+                The Heartbeat of <br/> Malang Athletics
               </h2>
-              <p className="text-zinc-400 font-['Barlow'] leading-relaxed mb-8">
-                For 50+ years, Anugerah Sports has been more than just a store — we're the heartbeat of Malang's sporting community. From grassroots tournaments to national champions, we've equipped generations of athletes.
+              <p className="text-zinc-500 text-lg leading-relaxed mb-10">
+                For over five decades, Anugerah Sports hasn't just been selling equipment—we've been fostering a community. From first-time runners to national champions, our walls hold the stories of thousands of personal bests and hard-fought victories.
               </p>
-              <div className="grid grid-cols-3 gap-6 mb-8">
+              
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 mb-10">
                 {[
-                  { icon: <TrendingUp size={20} />, value: '50+', label: 'Years' },
-                  { icon: <Users size={20} />, value: '10K+', label: 'Athletes' },
-                  { icon: <Award size={20} />, value: '500+', label: 'Products' },
-                ].map(({ icon, value, label }) => (
-                  <div key={label} className="p-4 bg-zinc-900/50 rounded-xl border border-zinc-800 text-center">
-                    <div className="text-[#AAFF00] flex justify-center mb-2">{icon}</div>
-                    <p className="font-['Barlow_Condensed'] font-black text-2xl text-white">{value}</p>
-                    <p className="text-zinc-500 text-xs font-['Barlow'] uppercase tracking-wider">{label}</p>
+                  { value: 50, label: 'Years Strong' },
+                  { value: 10, suffix: 'K+', label: 'Athletes Equipped' },
+                  { value: 100, suffix: '%', label: 'Authenticity' },
+                ].map(({ value, suffix, label }) => (
+                  <div key={label} className="border-l-2 border-[#E63946] pl-4">
+                    <p className="font-['Barlow_Condensed'] font-black text-4xl text-zinc-900">
+                      <Counter target={value} suffix={suffix} />
+                    </p>
+                    <p className="text-zinc-500 text-xs font-bold uppercase tracking-wider mt-1">{label}</p>
                   </div>
                 ))}
               </div>
-              <Link to="/about" className="inline-flex items-center gap-2 px-8 py-4 bg-[#AAFF00] text-black font-['Barlow_Condensed'] font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-white transition-colors">
-                Our Story <ArrowRight size={16} />
+              
+              <Link to="/about" className="inline-flex items-center gap-3 text-zinc-900 font-bold uppercase tracking-wider text-sm hover:text-[#E63946] transition-colors group">
+                Discover Our Heritage <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="grid grid-cols-2 gap-3"
-            >
-              {[
-                'https://images.unsplash.com/photo-1547491689-1f5c4f5671f1?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=400&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop',
-              ].map((src, i) => (
-                <div key={i} className={`rounded-2xl overflow-hidden ${i === 0 ? 'row-span-2' : ''}`}>
-                  <img src={src} alt="" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" style={{ minHeight: i === 0 ? '320px' : '150px' }} />
-                </div>
-              ))}
-            </motion.div>
+
+            <div className="order-1 lg:order-2 relative h-[500px] lg:h-[600px] w-full">
+              {/* Human-crafted asymmetrical image collage */}
+              <motion.img 
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: springEase }}
+                src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=800&fit=crop" 
+                alt="Store heritage" 
+                className="absolute top-0 right-0 w-[70%] h-[80%] object-cover shadow-xl"
+              />
+              <motion.img 
+                initial={{ opacity: 0, y: -40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2, ease: springEase }}
+                src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=500&h=500&fit=crop" 
+                alt="Community event" 
+                className="absolute bottom-0 left-0 w-[55%] h-[50%] object-cover shadow-2xl border-4 border-white"
+              />
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <p className="text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-[4px] mb-2">Real Athletes</p>
-          <h2 className="text-4xl lg:text-5xl text-white font-['Barlow_Condensed'] font-black uppercase">What They Say</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="p-5 bg-[#111] border border-zinc-900 rounded-2xl hover:border-[#AAFF00]/30 transition-all duration-200"
-            >
-              <div className="flex gap-0.5 mb-3">
-                {[...Array(5)].map((_, j) => (
-                  <Star key={j} size={12} className={j < t.rating ? 'fill-[#AAFF00] text-[#AAFF00]' : 'text-zinc-700'} />
-                ))}
+      {/* TOP BRANDS - Clean Logostrip style */}
+      <section className="py-16 bg-zinc-50 border-t border-zinc-200">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-zinc-400 font-bold text-xs uppercase tracking-widest mb-10">Official Authorized Retailer For</p>
+          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+            {brands.slice(0, 6).map((brand) => (
+              <div key={brand.id} className="flex items-center gap-2 group cursor-pointer">
+                <span className="font-['Barlow_Condensed'] font-bold text-2xl md:text-3xl text-zinc-900 uppercase tracking-widest group-hover:text-[#E63946] transition-colors">
+                  {brand.name}
+                </span>
               </div>
-              <p className="text-zinc-300 text-sm font-['Barlow'] leading-relaxed mb-4 italic">"{t.text}"</p>
-              <div className="flex items-center gap-3 pt-3 border-t border-zinc-900">
-                <div className="w-9 h-9 rounded-full bg-[#AAFF00]/20 flex items-center justify-center text-[#AAFF00] font-['Barlow_Condensed'] font-bold text-sm">
-                  {t.avatar}
-                </div>
-                <div>
-                  <p className="text-white font-['Barlow_Condensed'] font-semibold text-sm">{t.name}</p>
-                  <p className="text-zinc-500 text-xs font-['Barlow']">{t.role} • {t.location}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* MARKETPLACE SECTION */}
-      <section className="py-16 bg-[#0d0d0d] border-y border-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <p className="text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-[4px] mb-2">Shop Everywhere</p>
-            <h2 className="text-3xl lg:text-4xl text-white font-['Barlow_Condensed'] font-black uppercase">Find Us Online</h2>
-          </div>
-          <div className="flex flex-wrap justify-center gap-4">
-            {[
-              { name: 'Shopee', url: 'https://shopee.co.id/anugerahsports', bg: '#EE4D2D', label: 'shopee.co.id/anugerahsports' },
-              { name: 'Tokopedia', url: 'https://tokopedia.com/anugerahsports', bg: '#00AA5B', label: 'tokopedia.com/anugerahsports' },
-              { name: 'WhatsApp', url: 'https://wa.me/6281234567890', bg: '#25D366', label: '+62 812-3456-7890' },
-            ].map((mkt) => (
-              <a
-                key={mkt.name}
-                href={mkt.url}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-3 px-6 py-4 rounded-xl border border-zinc-800 hover:border-zinc-600 bg-zinc-900/50 hover:bg-zinc-900 transition-all group"
-              >
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center font-['Barlow_Condensed'] font-bold text-sm text-white" style={{ backgroundColor: mkt.bg }}>
-                  {mkt.name.slice(0, 2)}
-                </div>
-                <div>
-                  <p className="text-white font-['Barlow_Condensed'] font-bold text-sm uppercase group-hover:text-[#AAFF00] transition-colors">{mkt.name}</p>
-                  <p className="text-zinc-500 text-xs font-['Barlow']">{mkt.label}</p>
-                </div>
-                <ArrowRight size={14} className="text-zinc-600 group-hover:text-[#AAFF00] ml-2 transition-colors" />
-              </a>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-[#AAFF00] font-['Barlow_Condensed'] font-semibold text-sm uppercase tracking-[4px] mb-4">Ready to Play?</p>
-            <h2 className="font-['Barlow_Condensed'] font-black text-5xl lg:text-7xl uppercase text-white leading-tight mb-6">
-              Get Your Gear<br/>Today
-            </h2>
-            <p className="text-zinc-400 font-['Barlow'] mb-10">Visit our store in Malang or shop online. We're here for your sporting journey.</p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/products" className="px-8 py-4 bg-[#AAFF00] text-black font-['Barlow_Condensed'] font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-white transition-colors flex items-center gap-2">
-                Shop Now <ArrowRight size={16} />
-              </Link>
-              <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer"
-                className="px-8 py-4 bg-transparent border border-zinc-600 text-white font-['Barlow_Condensed'] font-bold text-sm uppercase tracking-widest rounded-xl hover:border-[#AAFF00] hover:text-[#AAFF00] transition-all flex items-center gap-2">
-                <MessageCircle size={16} /> Chat Us
-              </a>
-            </div>
-          </motion.div>
-        </div>
+      {/* CTA SECTION - Bold, highly legible */}
+      <section className="py-32 bg-zinc-900 text-white text-center px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: springEase }}
+          className="max-w-3xl mx-auto"
+        >
+          <h2 className="font-['Barlow_Condensed'] font-black text-5xl lg:text-7xl uppercase leading-tight tracking-tight mb-6">
+            Ready to break <br/> your limits?
+          </h2>
+          <p className="text-zinc-400 text-lg mb-10">
+            Visit our flagship store in Malang or order online for fast, reliable delivery.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/products" className="px-8 py-4 bg-[#E63946] text-white font-['Barlow_Condensed'] font-bold text-base uppercase tracking-widest rounded-full hover:bg-white hover:text-zinc-900 transition-colors flex items-center gap-2 shadow-lg shadow-red-500/20">
+              Shop Online <ArrowRight size={18} />
+            </Link>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer"
+              className="px-8 py-4 bg-transparent border border-zinc-700 text-white font-['Barlow_Condensed'] font-bold text-base uppercase tracking-widest rounded-full hover:border-white transition-all flex items-center gap-2">
+              <MessageCircle size={18} /> Contact Store
+            </a>
+          </div>
+        </motion.div>
       </section>
 
     </motion.div>

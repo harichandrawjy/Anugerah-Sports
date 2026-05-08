@@ -2,60 +2,68 @@ import { Link } from 'react-router-dom'
 import { Instagram, MessageCircle, MapPin, Phone, Mail, Zap, ArrowRight } from 'lucide-react'
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear()
+
   return (
-    <footer className="bg-[#080808] border-t border-zinc-900">
-      {/* Newsletter Bar */}
-      <div className="bg-[#AAFF00] py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+    <footer className="bg-zinc-950 border-t border-zinc-900 selection:bg-[#E63946] selection:text-white">
+      
+      {/* NEWSLETTER BAR - High impact color block */}
+      <div className="bg-[#E63946] py-12">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <p className="font-['Barlow_Condensed'] font-bold text-2xl uppercase text-black tracking-wider">Get Exclusive Deals</p>
-            <p className="text-black/70 text-sm font-['Barlow']">Subscribe for promo, new arrivals & sports tips</p>
+            <p className="font-['Barlow_Condensed'] font-black text-3xl md:text-4xl uppercase text-white tracking-tight mb-2">
+              Join the Roster
+            </p>
+            <p className="text-white/90 text-base font-medium">
+              Subscribe for early access to sales, new arrivals & pro sports tips.
+            </p>
           </div>
-          <div className="flex w-full md:w-auto gap-0">
+          <div className="flex w-full md:w-auto gap-0 shadow-2xl shadow-red-900/20">
             <input
               type="email"
-              placeholder="Your email address"
-              className="flex-1 md:w-72 px-4 py-3 bg-black text-white placeholder-zinc-500 text-sm font-['Barlow'] outline-none rounded-l-lg border border-black focus:border-black"
+              placeholder="Enter your email address"
+              className="flex-1 md:w-80 px-6 py-4 bg-white text-zinc-900 placeholder-zinc-400 text-base focus:outline-none border-none"
             />
-            <button className="px-5 py-3 bg-black text-[#AAFF00] font-['Barlow_Condensed'] font-bold text-sm tracking-wider uppercase rounded-r-lg hover:bg-zinc-900 transition-colors flex items-center gap-2">
-              Subscribe <ArrowRight size={14} />
+            <button className="px-8 py-4 bg-zinc-900 text-white font-['Barlow_Condensed'] font-bold text-base tracking-widest uppercase hover:bg-black transition-colors flex items-center gap-2">
+              Subscribe <ArrowRight size={18} />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
+      {/* MAIN FOOTER */}
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+          
+          {/* Brand Info */}
           <div>
-            <Link to="/" className="flex items-center gap-2 mb-5">
-              <div className="w-9 h-9 bg-[#AAFF00] rounded-lg flex items-center justify-center">
-                <Zap size={20} className="text-black fill-black" />
+            <Link to="/" className="flex items-center gap-3 mb-6 group">
+              <div className="w-10 h-10 bg-[#E63946] flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                <Zap size={20} className="text-white fill-white" />
               </div>
               <div>
-                <span className="font-['Oswald'] font-bold text-lg text-white tracking-wider">ANUGERAH</span>
-                <span className="block text-[10px] text-[#AAFF00] font-['Barlow_Condensed'] font-semibold tracking-[4px] uppercase leading-none">SPORTS</span>
+                <span className="font-['Barlow_Condensed'] font-black text-2xl text-white uppercase tracking-wider leading-none block">ANUGERAH</span>
+                <span className="block text-[11px] text-zinc-500 font-bold tracking-[0.3em] uppercase leading-none mt-1">SPORTS</span>
               </div>
             </Link>
-            <p className="text-zinc-500 text-sm leading-relaxed font-['Barlow'] mb-6">
-              Toko olahraga terpercaya di Malang sejak 1974. Menyediakan produk original dengan harga terbaik untuk komunitas olahraga Indonesia.
+            <p className="text-zinc-400 text-sm leading-relaxed mb-8">
+              Equipping Malang's sporting community since 1974. Premium original products, guaranteed authenticity, and genuine passion for the game.
             </p>
             <div className="flex gap-3">
               <a href="https://instagram.com/anugerahsports" target="_blank" rel="noreferrer"
-                className="w-9 h-9 bg-zinc-900 hover:bg-[#AAFF00] hover:text-black text-zinc-400 rounded-lg flex items-center justify-center transition-all duration-200">
-                <Instagram size={16} />
+                className="w-10 h-10 border border-zinc-800 hover:border-[#E63946] hover:bg-[#E63946] text-zinc-400 hover:text-white flex items-center justify-center transition-all duration-300">
+                <Instagram size={18} />
               </a>
               <a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer"
-                className="w-9 h-9 bg-zinc-900 hover:bg-[#AAFF00] hover:text-black text-zinc-400 rounded-lg flex items-center justify-center transition-all duration-200">
-                <MessageCircle size={16} />
+                className="w-10 h-10 border border-zinc-800 hover:border-[#E63946] hover:bg-[#E63946] text-zinc-400 hover:text-white flex items-center justify-center transition-all duration-300">
+                <MessageCircle size={18} />
               </a>
               <a href="https://shopee.co.id/anugerahsports" target="_blank" rel="noreferrer"
-                className="w-9 h-9 bg-zinc-900 hover:bg-[#AAFF00] hover:text-black text-zinc-400 rounded-lg flex items-center justify-center transition-all duration-200 font-['Barlow_Condensed'] font-bold text-xs">
+                className="w-10 h-10 border border-zinc-800 hover:border-[#E63946] hover:bg-[#E63946] text-zinc-400 hover:text-white flex items-center justify-center transition-all duration-300 font-['Barlow_Condensed'] font-bold text-sm tracking-wider">
                 SP
               </a>
               <a href="https://tokopedia.com/anugerahsports" target="_blank" rel="noreferrer"
-                className="w-9 h-9 bg-zinc-900 hover:bg-[#AAFF00] hover:text-black text-zinc-400 rounded-lg flex items-center justify-center transition-all duration-200 font-['Barlow_Condensed'] font-bold text-xs">
+                className="w-10 h-10 border border-zinc-800 hover:border-[#E63946] hover:bg-[#E63946] text-zinc-400 hover:text-white flex items-center justify-center transition-all duration-300 font-['Barlow_Condensed'] font-bold text-sm tracking-wider">
                 TP
               </a>
             </div>
@@ -63,12 +71,12 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-['Barlow_Condensed'] font-bold text-lg uppercase tracking-widest mb-5">Quick Links</h4>
-            <ul className="space-y-3">
-              {[['Home', '/'], ['Products', '/products'], ['Brands', '/brands'], ['About Us', '/about'], ['Contact', '/contact']].map(([label, path]) => (
+            <h4 className="text-white font-['Barlow_Condensed'] font-black text-xl uppercase tracking-widest mb-6">Quick Links</h4>
+            <ul className="space-y-4">
+              {[['Home', '/'], ['Products', '/products'], ['Brands', '/brands'], ['Our Story', '/about'], ['Contact', '/contact']].map(([label, path]) => (
                 <li key={path}>
-                  <Link to={path} className="text-zinc-500 hover:text-[#AAFF00] text-sm font-['Barlow'] transition-colors flex items-center gap-2 group">
-                    <span className="w-0 group-hover:w-4 h-0.5 bg-[#AAFF00] transition-all duration-200" />
+                  <Link to={path} className="text-zinc-400 hover:text-white text-sm transition-colors flex items-center gap-3 group">
+                    <span className="w-0 group-hover:w-4 h-px bg-[#E63946] transition-all duration-300" />
                     {label}
                   </Link>
                 </li>
@@ -78,12 +86,12 @@ export default function Footer() {
 
           {/* Categories */}
           <div>
-            <h4 className="text-white font-['Barlow_Condensed'] font-bold text-lg uppercase tracking-widest mb-5">Categories</h4>
-            <ul className="space-y-3">
+            <h4 className="text-white font-['Barlow_Condensed'] font-black text-xl uppercase tracking-widest mb-6">Equipment</h4>
+            <ul className="space-y-4">
               {['Badminton', 'Futsal', 'Football', 'Running', 'Jerseys', 'Accessories'].map((cat) => (
                 <li key={cat}>
-                  <Link to={`/products?category=${cat}`} className="text-zinc-500 hover:text-[#AAFF00] text-sm font-['Barlow'] transition-colors flex items-center gap-2 group">
-                    <span className="w-0 group-hover:w-4 h-0.5 bg-[#AAFF00] transition-all duration-200" />
+                  <Link to={`/products?category=${cat}`} className="text-zinc-400 hover:text-white text-sm transition-colors flex items-center gap-3 group">
+                    <span className="w-0 group-hover:w-4 h-px bg-[#E63946] transition-all duration-300" />
                     {cat}
                   </Link>
                 </li>
@@ -93,41 +101,48 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-['Barlow_Condensed'] font-bold text-lg uppercase tracking-widest mb-5">Contact Us</h4>
-            <ul className="space-y-4">
-              <li className="flex gap-3 items-start">
-                <MapPin size={16} className="text-[#AAFF00] mt-0.5 shrink-0" />
-                <span className="text-zinc-500 text-sm font-['Barlow'] leading-relaxed">Jl. Ahmad Yani No. 45, Malang, Jawa Timur 65145</span>
+            <h4 className="text-white font-['Barlow_Condensed'] font-black text-xl uppercase tracking-widest mb-6">Contact Us</h4>
+            <ul className="space-y-5">
+              <li className="flex gap-4 items-start group">
+                <MapPin size={18} className="text-zinc-500 group-hover:text-[#E63946] mt-0.5 shrink-0 transition-colors" />
+                <span className="text-zinc-400 text-sm leading-relaxed">Jl. Ahmad Yani No. 45<br/>Malang, Jawa Timur 65145</span>
               </li>
-              <li className="flex gap-3 items-center">
-                <Phone size={16} className="text-[#AAFF00] shrink-0" />
-                <span className="text-zinc-500 text-sm font-['Barlow']">+62 812-3456-7890</span>
+              <li className="flex gap-4 items-center group">
+                <Phone size={18} className="text-zinc-500 group-hover:text-[#E63946] shrink-0 transition-colors" />
+                <span className="text-zinc-400 text-sm">+62 812-3456-7890</span>
               </li>
-              <li className="flex gap-3 items-center">
-                <Mail size={16} className="text-[#AAFF00] shrink-0" />
-                <span className="text-zinc-500 text-sm font-['Barlow']">hello@anugerahsports.id</span>
+              <li className="flex gap-4 items-center group">
+                <Mail size={18} className="text-zinc-500 group-hover:text-[#E63946] shrink-0 transition-colors" />
+                <span className="text-zinc-400 text-sm">hello@anugerahsports.id</span>
               </li>
             </ul>
-            <div className="mt-5 p-3 bg-zinc-900/50 rounded-lg border border-zinc-800">
-              <p className="text-xs text-zinc-500 font-['Barlow'] mb-1">Store Hours</p>
-              <p className="text-sm text-white font-['Barlow_Condensed'] font-semibold">Mon–Sat: 08:00 – 20:00</p>
-              <p className="text-sm text-white font-['Barlow_Condensed'] font-semibold">Sunday: 09:00 – 17:00</p>
+            <div className="mt-8 p-5 bg-zinc-900 border border-zinc-800">
+              <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mb-2">Store Hours</p>
+              <div className="space-y-1">
+                <p className="text-sm text-zinc-300 flex justify-between"><span>Mon–Sat</span> <span className="font-medium text-white">08:00 – 20:00</span></p>
+                <p className="text-sm text-zinc-300 flex justify-between"><span>Sunday</span> <span className="font-medium text-white">09:00 – 17:00</span></p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-zinc-900 py-5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-zinc-600 text-xs font-['Barlow']">© 2024 Anugerah Sports. All rights reserved. Est. 1974, Malang.</p>
-          <div className="flex gap-5">
-            {['Privacy Policy', 'Terms of Service'].map((item) => (
-              <a key={item} href="#" className="text-zinc-600 hover:text-zinc-400 text-xs font-['Barlow'] transition-colors">{item}</a>
+      {/* BOTTOM BAR */}
+      <div className="border-t border-zinc-900 bg-[#0a0a0a] py-6">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-zinc-500 text-sm text-center md:text-left">
+            © {currentYear} Anugerah Sports. All rights reserved. Est. 1974, Malang.
+          </p>
+          <div className="flex gap-6">
+            {['Privacy Policy', 'Terms of Service', 'Return Policy'].map((item) => (
+              <a key={item} href="#" className="text-zinc-500 hover:text-white text-sm transition-colors">
+                {item}
+              </a>
             ))}
           </div>
         </div>
       </div>
+      
     </footer>
   )
 }
